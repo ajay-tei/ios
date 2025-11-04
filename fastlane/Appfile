@@ -1,0 +1,14 @@
+# Appfile for Capacitor iOS
+
+# App Identifier
+app_identifier("com.totaleintegrated.shell")
+
+# Apple ID / Team ID (update these with your actual values)
+apple_id("ajay@totaleintegrated.com")
+team_id("6AZB5SDGC9")
+
+# Workspace path
+workspace("App/App.xcworkspace")
+
+# Project path
+project("App/App.xcodeproj")
