@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Total e Integrated | Unify Platform</title>
+
+  <base href="/">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="theme-color" content="#028eb5">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+
+  <!-- Content Security Policy for Capacitor -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' capacitor://localhost ionic://localhost http://localhost https://localhost;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' capacitor://localhost ionic://localhost http://localhost https://localhost https://www.google.com https://www.googletagmanager.com https://*.google-analytics.com https://challenges.cloudflare.com https://proxy-internal.totaleintegrated.com https://*.totaleintegrated.com https://*.totaleintegrated.net https://*.silvercoastclub.com;
+    script-src-elem 'self' 'unsafe-inline' capacitor://localhost ionic://localhost http://localhost https://localhost https://www.google.com https://www.googletagmanager.com https://*.google-analytics.com https://challenges.cloudflare.com https://proxy-internal.totaleintegrated.com https://*.totaleintegrated.com https://*.totaleintegrated.net https://*.silvercoastclub.com;
+    style-src 'self' 'unsafe-inline' capacitor://localhost ionic://localhost http://localhost https://localhost https://*.totaleintegrated.com https://*.totaleintegrated.net https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    style-src-elem 'self' 'unsafe-inline' capacitor://localhost ionic://localhost http://localhost https://localhost https://*.totaleintegrated.com https://*.totaleintegrated.net https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    img-src 'self' data: blob: capacitor://localhost ionic://localhost http: https:;
+    font-src 'self' data: capacitor://localhost ionic://localhost http://localhost https://localhost https://*.totaleintegrated.com https://*.totaleintegrated.net https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    connect-src 'self' capacitor://localhost ionic://localhost http://localhost https://localhost https://proxy-internal.totaleintegrated.com https://www.google.com https://www.googletagmanager.com https://*.google-analytics.com https://challenges.cloudflare.com https://*.totaleintegrated.com https://*.totaleintegrated.net https://*.silvercoastclub.com ws://localhost wss://localhost ws://*.silvercoastclub.com wss://*.silvercoastclub.com;
+    media-src 'self' data: blob: capacitor://localhost ionic://localhost http: https:;
+    frame-src 'self' https://www.google.com https://challenges.cloudflare.com https://player.vimeo.com https://form.jotform.com;
+  ">
+
+  <!-- iOS PWA/Capacitor Splash Screen Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TEI">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="shell-styles-bundle.css"></head>
+
+<body class="tei-material-theme">
+  <ngx-app></ngx-app>
+  <div id="nb-global-spinner" class="spinner">
+    <div class="blob blob-0"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
+
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <script src="config.js"></script>
+<script src="runtime.js" type="module"></script><script src="polyfills.js" type="module"></script><script src="scripts.js" defer></script><script src="vendor.js" type="module"></script><script src="main.js" type="module"></script></body>
+
+</html>

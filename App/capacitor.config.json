@@ -1,0 +1,52 @@
+{
+	"appId": "com.totaleintegrated.shell",
+	"appName": "Total e Integrated",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"server": {
+		"androidScheme": "http",
+		"iosScheme": "capacitor",
+		"allowNavigation": [
+			"proxy-internal.totaleintegrated.com",
+			"www.google.com",
+			"challenges.cloudflare.com",
+			"*.totaleintegrated.com"
+		]
+	},
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0,
+			"launchAutoHide": true,
+			"backgroundColor": "#028eb5",
+			"androidSplashResourceName": "splash",
+			"androidScaleType": "CENTER_CROP",
+			"showSpinner": false,
+			"androidSpinnerStyle": "large",
+			"iosSpinnerStyle": "small",
+			"spinnerColor": "#ffffff",
+			"splashFullScreen": true,
+			"splashImmersive": true
+		},
+		"Keyboard": {
+			"resize": "body",
+			"style": "dark",
+			"resizeOnFullScreen": true
+		}
+	},
+	"ios": {
+		"contentInset": "automatic",
+		"scrollEnabled": true,
+		"scheme": "capacitor",
+		"preferredContentMode": "mobile"
+	},
+	"android": {
+		"allowMixedContent": false,
+		"captureInput": true,
+		"webContentsDebuggingEnabled": true,
+		"backgroundColor": "#028eb5",
+		"hardwareBackButton": true,
+		"appendUserAgent": "TEICapacitorApp",
+		"layoutBackground": "#028eb5"
+	},
+	"packageClassList": []
+}

@@ -1,0 +1,705 @@
+/**
+ * Capacitor Mobile Styles
+ * Handles safe areas, responsive design, and mobile-specific layouts
+ */
+
+/* ============================================
+   Safe Area Insets - Status Bar & Notches
+   ============================================ */
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+@supports (height: 100dvh) {
+  html,
+  body {
+    min-height: 100dvh;
+  }
+}
+
+body {
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+/* ============================================
+   Layout & Header Adjustments
+   ============================================ */
+
+nb-layout,
+.nb-theme-default nb-layout,
+.nb-theme-cosmic nb-layout {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+nb-layout-header,
+.nb-theme-default nb-layout-header,
+.nb-theme-cosmic nb-layout-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding-top: env(safe-area-inset-top, 0) !important;
+  min-height: calc(4.75rem + env(safe-area-inset-top, 0));
+  box-sizing: border-box;
+}
+
+nb-layout .layout-container {
+  padding-top: calc(4.75rem + env(safe-area-inset-top, 0));
+}
+
+nb-layout-column,
+.nb-theme-default nb-layout-column,
+.nb-theme-cosmic nb-layout-column {
+  padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0));
+  min-height: calc(100vh - 4.75rem - 3rem - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0));
+}
+
+nb-layout-footer,
+.nb-theme-default nb-layout-footer,
+.nb-theme-cosmic nb-layout-footer {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding-bottom: env(safe-area-inset-bottom, 0) !important;
+  min-height: calc(3rem + env(safe-area-inset-bottom, 0));
+  box-sizing: border-box;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer content */
+ngx-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ============================================
+   Sidebar Adjustments
+   ============================================ */
+
+nb-sidebar,
+.nb-theme-default nb-sidebar,
+.nb-theme-cosmic nb-sidebar {
+  padding-top: env(safe-area-inset-top, 0);
+  top: calc(4.75rem + env(safe-area-inset-top, 0));
+  height: calc(100vh - 4.75rem - env(safe-area-inset-top, 0));
+}
+
+nb-sidebar .menu-item {
+  min-height: 48px;
+}
+
+/* ============================================
+   Header Component Specific
+   ============================================ */
+
+ngx-header,
+.header-container {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+@media (max-width: 768px) {
+  ngx-header,
+  .header-container {
+    padding-left: max(env(safe-area-inset-left, 0), 0.5rem);
+    padding-right: max(env(safe-area-inset-right, 0), 0.5rem);
+  }
+}
+
+.menu-icon,
+button[nbbutton].menu-icon,
+.sidebar-toggle {
+  min-width: 48px;
+  min-height: 48px;
+  padding: 8px;
+}
+
+/* ============================================
+   Material Components
+   ============================================ */
+
+/* Material Toolbar - Top (exclude bottom toolbars) */
+mat-toolbar:not([position="bottom"]),
+.mat-toolbar:not(.mat-toolbar-bottom):not([position="bottom"]) {
+  padding-top: env(safe-area-inset-top, 0) !important;
+  //min-height: calc(64px + env(safe-area-inset-top, 0)) !important;
+}
+
+/* Material Toolbar - Bottom (Fixed) */
+mat-toolbar.mat-toolbar-bottom,
+.mat-toolbar.mat-toolbar-bottom,
+mat-toolbar[position="bottom"],
+.mat-toolbar[position="bottom"] {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: auto !important;
+  width: 100vw !important;
+  z-index: 999 !important;
+  padding-top: 0 !important;
+  padding-bottom: env(safe-area-inset-bottom, 0) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  height: calc(56px + env(safe-area-inset-bottom, 0)) !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-evenly !important;
+  gap: 0 !important;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  /* Material elevation for WebView rendering */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1), 0 -1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Ensure bottom toolbar content is visible */
+mat-toolbar.mat-toolbar-bottom *,
+.mat-toolbar.mat-toolbar-bottom *,
+mat-toolbar[position="bottom"] *,
+.mat-toolbar[position="bottom"] * {
+  z-index: 1;
+}
+
+/* Generic bottom positioned mat-toolbar */
+mat-toolbar[style*="bottom"],
+.mat-toolbar[style*="bottom"] {
+  padding-bottom: env(safe-area-inset-bottom, 0) !important;
+  min-height: calc(56px + env(safe-area-inset-bottom, 0)) !important;
+}
+
+.mat-dialog-container,
+.cdk-overlay-pane {
+  margin-top: env(safe-area-inset-top, 0);
+  margin-bottom: env(safe-area-inset-bottom, 0);
+  max-height: calc(100vh - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0) - 2rem) !important;
+  max-width: calc(100vw - env(safe-area-inset-left, 0) - env(safe-area-inset-right, 0) - 2rem) !important;
+  overflow: auto !important;
+}
+
+.cdk-overlay-container {
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Material Dialog specific constraints */
+.mat-dialog-container {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.mat-dialog-content,
+.mat-mdc-dialog-content {
+  max-height: calc(100vh - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0) - 200px) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Nebular dialog/modal constraints */
+nb-dialog-container,
+.cdk-overlay-pane nb-dialog-container {
+  max-height: calc(100vh - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0) - 2rem) !important;
+  max-width: calc(100vw - env(safe-area-inset-left, 0) - env(safe-area-inset-right, 0) - 2rem) !important;
+  overflow: auto !important;
+}
+
+/* Mobile specific dialog constraints */
+@media (max-width: 768px) {
+  .mat-dialog-container,
+  .cdk-overlay-pane,
+  nb-dialog-container {
+    max-height: calc(100vh - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0) - 1rem) !important;
+    max-width: calc(100vw - 1rem) !important;
+    margin: 0.5rem !important;
+  }
+  
+  .mat-dialog-content,
+  .mat-mdc-dialog-content {
+    max-height: calc(100vh - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0) - 150px) !important;
+  }
+}
+
+/* ============================================
+   Responsive Design Improvements
+   ============================================ */
+
+@media (max-width: 768px) {
+  .container,
+  .content-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  button,
+  .btn,
+  a[nbbutton] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  input,
+  textarea,
+  select,
+  .mat-form-field {
+    font-size: 16px !important;
+  }
+
+  .card,
+  mat-card,
+  nb-card {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container,
+  .content-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* ============================================
+   Keyboard Handling
+   ============================================ */
+
+body.keyboard-open {
+  height: 100%;
+}
+
+.keyboard-open input:focus,
+.keyboard-open textarea:focus {
+  scroll-margin-top: calc(4.75rem + env(safe-area-inset-top, 0) + 20px);
+}
+
+/* ============================================
+   Touch & Gesture Improvements
+   ============================================ */
+
+button,
+.btn,
+[role="button"],
+.clickable {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+
+/* ============================================
+   Status Bar Background
+   ============================================ */
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top, 0);
+  background-color: #028eb5;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* ============================================
+   Landscape Mode Adjustments
+   ============================================ */
+
+@media (orientation: landscape) and (max-height: 500px) {
+  nb-layout-header {
+    min-height: calc(3.5rem + env(safe-area-inset-top, 0)) !important;
+  }
+
+  nb-layout .layout-container {
+    padding-top: calc(3.5rem + env(safe-area-inset-top, 0));
+  }
+}
+
+/* ============================================
+   Loading & Spinner Adjustments
+   ============================================ */
+
+.spinner,
+#nb-global-spinner {
+  top: env(safe-area-inset-top, 0);
+  height: calc(100% - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0));
+}
+
+/* ============================================
+   Scrollbar Hiding for Cleaner Mobile UI
+   ============================================ */
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+/* ============================================
+   Android-Specific Fixes
+   ============================================ */
+
+/* Fix for Android rendering issues */
+nb-layout,
+nb-layout-header,
+nb-layout-footer,
+nb-layout-column {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Prevent Android WebView zoom on input focus */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Fix Android overscroll/bounce effect */
+body {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure fonts render correctly on Android */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Fix for Android status bar transparency */
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+}
+
+/* Ensure clicks work properly on Android */
+
+
+a, button, input, select, textarea {
+  -webkit-touch-callout: default;
+}
+
+/* Fix Android tap delay */
+a, button, input, label, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Prevent text selection on buttons/controls */
+button, .btn, a[role="button"] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Fix footer visibility on Android (ensure it's above content) */
+nb-layout-footer {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Android: Ensure footer doesn't get hidden by keyboard */
+@media (max-width: 768px) {
+  body.keyboard-open nb-layout-footer {
+    position: fixed !important;
+    bottom: 0 !important;
+  }
+
+  body.keyboard-open mat-toolbar[position="bottom"],
+  body.keyboard-open .mat-toolbar-bottom {
+    position: fixed !important;
+    bottom: 0 !important;
+  }
+}
+
+/* ============================================
+   Catch-All for Bottom Navigation/Toolbars
+   ============================================ */
+
+/* Any element with these classes should be visible at bottom */
+.bottom-nav,
+.bottom-toolbar,
+.bottom-menu,
+.bottom-navigation,
+[class*="bottom-bar"] {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  padding-bottom: env(safe-area-inset-bottom, 0) !important;
+  min-height: calc(56px + env(safe-area-inset-bottom, 0)) !important;
+  box-sizing: border-box !important;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Fix: Ensure mat-toolbar is above other content */
+mat-toolbar[position="bottom"],
+.mat-toolbar-bottom {
+  z-index: 1000 !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  pointer-events: auto !important;
+}
+
+/* Ensure mat-icon is visible and sized in bottom toolbar */
+mat-toolbar[position="bottom"] mat-icon,
+.mat-toolbar-bottom mat-icon {
+  color: #fff !important;
+  font-size: 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure buttons in bottom toolbar are properly spaced and distributed equally */
+mat-toolbar[position="bottom"] > *,
+.mat-toolbar-bottom > * {
+  flex: 1 1 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-width: 60px !important;
+  width: auto !important;
+  max-width: none !important;
+  min-height: 48px !important;
+  margin: 0 !important;
+  padding: 4px !important;
+  position: static !important;
+  transform: none !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+}
+
+/* Button layout in bottom toolbar - ensure buttons don't overlap */
+mat-toolbar[position="bottom"] button,
+.mat-toolbar-bottom button,
+mat-toolbar[position="bottom"] a,
+.mat-toolbar-bottom a {
+  flex: 1 1 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 60px !important;
+  width: auto !important;
+  max-width: none !important;
+  min-height: 48px !important;
+  margin: 0 2px !important;
+  padding: 4px !important;
+  position: static !important;
+  transform: none !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  float: none !important;
+  overflow: visible !important;
+}
+
+/* Ensure mat-icons in bottom toolbar are visible and properly sized */
+mat-toolbar[position="bottom"] mat-icon,
+.mat-toolbar-bottom mat-icon,
+mat-toolbar[position="bottom"] button mat-icon,
+.mat-toolbar-bottom button mat-icon {
+  font-size: 24px !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Ensure button text/labels don't overlap */
+mat-toolbar[position="bottom"] button span,
+.mat-toolbar-bottom button span {
+  display: block !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  margin-top: 2px !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+}
+
+/* Ensure content doesn't overlap bottom toolbar */
+nb-layout-column {
+  padding-bottom: calc(56px + env(safe-area-inset-bottom, 0) + 1rem) !important;
+}
+
+/* Override theme CSS that hides first toolbar - force bottom toolbar visibility */
+.tei-material-theme .content mat-toolbar[position="bottom"]:first-of-type,
+.tei-material-theme .content .mat-toolbar-bottom:first-of-type {
+  display: flex !important;
+  visibility: visible !important;
+}
+
+/* ============================================
+   Bottom Toolbar Button Layout Fixes
+   ============================================ */
+
+/* CRITICAL FIX: Prevent absolute positioning that causes overlap - UNIVERSAL SELECTORS */
+/* Target ALL children regardless of element type or class */
+html body mat-toolbar[position="bottom"] > *,
+html body mat-toolbar[position="bottom"] > * > *,
+html body mat-toolbar[position="bottom"] > * > * > *,
+html body mat-toolbar[position="bottom"] button,
+html body mat-toolbar[position="bottom"] a,
+html body mat-toolbar[position="bottom"] div,
+html body mat-toolbar[position="bottom"] .material-symbols-outlined,
+html body mat-toolbar[position="bottom"] .a-nav-bottom-item-icon-img,
+html body .mat-toolbar-bottom > *,
+html body .mat-toolbar-bottom > * > *,
+html body .mat-toolbar-bottom button,
+html body .mat-toolbar-bottom a,
+html body .mat-toolbar-bottom div {
+  position: static !important;
+  left: unset !important;
+  right: unset !important;
+  top: unset !important;
+  bottom: unset !important;
+  transform: none !important;
+  translate: none !important;
+  float: none !important;
+  clear: none !important;
+}
+
+/* CRITICAL: Force flex distribution on toolbar - MAXIMUM SPECIFICITY */
+html body mat-toolbar[position="bottom"],
+html body .mat-toolbar-bottom {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important; /* Even distribution */
+  align-items: center !important;
+  align-content: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important; /* No gap - let flex handle spacing */
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
+/* CRITICAL: Distribute ALL direct children equally */
+html body mat-toolbar[position="bottom"] > *,
+html body mat-toolbar[position="bottom"] > a,
+html body mat-toolbar[position="bottom"] > button,
+html body mat-toolbar[position="bottom"] > div,
+html body mat-toolbar[position="bottom"] > span,
+html body .mat-toolbar-bottom > *,
+html body .mat-toolbar-bottom > a,
+html body .mat-toolbar-bottom > button,
+html body .mat-toolbar-bottom > div,
+html body .mat-toolbar-bottom > span {
+  flex: 1 1 0 !important;
+  flex-grow: 1 !important;
+  flex-shrink: 1 !important;
+  flex-basis: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  padding: 4px !important;
+}
+
+/* Ensure spacers/titles don't cause issues */
+html body mat-toolbar[position="bottom"] > span.spacer,
+html body mat-toolbar[position="bottom"] > .mat-toolbar-spacer {
+  flex-grow: 0 !important;
+  flex-shrink: 1 !important;
+  width: auto !important;
+}
+
+/* Ensure mat-toolbar-row and mat-toolbar-single-row work correctly in bottom toolbar */
+html body mat-toolbar[position="bottom"] .mat-toolbar-row,
+html body mat-toolbar[position="bottom"] .mat-toolbar-single-row,
+html body .mat-toolbar-bottom .mat-toolbar-row,
+html body .mat-toolbar-bottom .mat-toolbar-single-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  /* Override Material's default padding for bottom toolbar */
+  padding: 0 !important;
+  /* Ensure buttons inside toolbar-row are distributed */
+}
+
+/* If toolbar-row is the direct child, apply same button distribution */
+html body mat-toolbar[position="bottom"] > .mat-toolbar-row > *,
+html body mat-toolbar[position="bottom"] > .mat-toolbar-single-row > *,
+html body .mat-toolbar-bottom > .mat-toolbar-row > *,
+html body .mat-toolbar-bottom > .mat-toolbar-single-row > * {
+  flex: 1 1 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  padding: 4px !important;
+}
